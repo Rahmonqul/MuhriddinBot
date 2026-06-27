@@ -1,0 +1,64 @@
+{% extends "admin/change_list.html" %}
+{% load i18n %}
+
+{% block content %}
+{% if payment_stats %}
+<div style="
+    margin: 0 0 20px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 5px solid #28a745;
+">
+  <h2 style="margin:0 0 14px; font-size:17px; color:#222;">
+    💰 {{ current_month }} — Oylik to'lov hisoboti
+  </h2>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:10px; margin-bottom:14px;">
+    {% for row in payment_stats %}
+    {% if row.total_cnt %}
+    <div style="
+        background:#fff;
+        border-radius:8px;
+        padding:12px 14px;
+        box-shadow:0 1px 4px rgba(0,0,0,.1);
+    ">
+      <div style="font-weight:700; font-size:15px; margin-bottom:8px;">🏫 {{ row.group_name }}</div>
+      <div style="font-size:13px; line-height:2;">
+        {% if row.paid_cnt %}
+        <div>✅ To'landi: <strong>{{ row.paid_cnt }} ta — {{ row.paid_sum|floatformat:0 }} so'm</strong></div>
+        {% endif %}
+        {% if row.pending_cnt %}
+        <div>⏳ Kutmoqda: <strong>{{ row.pending_cnt }} ta — {{ row.pending_sum|floatformat:0 }} so'm</strong></div>
+        {% endif %}
+        {% if row.overdue_cnt %}
+        <div style="color:#dc3545;">🔴 Muddati o'tdi: <strong>{{ row.overdue_cnt }} ta — {{ row.overdue_sum|floatformat:0 }} so'm</strong></div>
+        {% endif %}
+        {% if row.upcoming_cnt %}
+        <div style="color:#856404;">⏰ 3 kun ichida: <strong>{{ row.upcoming_cnt }} ta</strong></div>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  <div style="
+      background:#fff;
+      border-radius:8px;
+      padding:12px 16px;
+      box-shadow:0 1px 4px rgba(0,0,0,.1);
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      font-size:14px;
+  ">
+    <span>💵 Yig'ilgan: <strong style="color:#28a745;">{{ total_paid|floatformat:0 }} so'm</strong></span>
+    <span>⏳ Kutilayotgan: <strong style="color:#856404;">{{ total_pending|floatformat:0 }} so'm</strong></span>
+    <span>🔴 Qarzdorlik: <strong style="color:#dc3545;">{{ total_overdue|floatformat:0 }} so'm</strong></span>
+    <span>🎯 Umumiy: <strong>{{ total_expected|floatformat:0 }} so'm</strong></span>
+  </div>
+</div>
+{% endif %}
+{{ block.super }}
+{% endblock %}

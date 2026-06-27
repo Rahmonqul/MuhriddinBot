@@ -1,0 +1,631 @@
+/* =====================================================
+   MathAcademy Admin — Telefon uchun qulay
+   ===================================================== */
+
+/* iOS da input bosilganda sahifa zum qilmasin */
+input, select, textarea, button {
+  font-size: 16px !important;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ── INPUTLAR ────────────────────────────────────── */
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+select {
+  height: 50px !important;
+  min-height: 50px !important;
+  padding: 0 14px !important;
+  border: 1.5px solid #d0d0d0 !important;
+  border-radius: 8px !important;
+  font-size: 16px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background: #fff !important;
+  color: #222 !important;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+textarea {
+  min-height: 90px !important;
+  padding: 12px 14px !important;
+  border: 1.5px solid #d0d0d0 !important;
+  border-radius: 8px !important;
+  font-size: 16px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #555 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.08) !important;
+}
+
+/* ── TUGMALAR ────────────────────────────────────── */
+
+.btn,
+input[type="submit"],
+button[type="submit"],
+.submit-row input[type="submit"],
+.submit-row a.closelink,
+.submit-row a.deletelink {
+  height: 50px !important;
+  min-height: 50px !important;
+  padding: 0 22px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Saqlash paneli — pastda qolipishib tursin */
+.submit-row {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 999 !important;
+  background: #fff !important;
+  border-top: 1px solid #e0e0e0 !important;
+  padding: 10px 14px !important;
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+
+.submit-row input[type="submit"],
+.submit-row a {
+  flex: 1 !important;
+  text-align: center !important;
+  min-width: 100px !important;
+}
+
+/* Sahifa pastida submit-row uchun joy */
+#content-main, .content {
+  padding-bottom: 80px !important;
+}
+
+/* ── CHECKBOX ────────────────────────────────────── */
+
+input[type="checkbox"] {
+  width: 22px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  border-radius: 5px !important;
+  margin: 0 8px 0 0 !important;
+  vertical-align: middle !important;
+  cursor: pointer !important;
+  accent-color: #333;
+  flex-shrink: 0;
+}
+
+/* Hafta kunlari — har kuni alohida katta blok */
+ul.vCheckboxFieldBullet {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 6px 0 0 !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 6px !important;
+}
+
+ul.vCheckboxFieldBullet li {
+  margin: 0 !important;
+}
+
+.vCheckboxLabel {
+  display: flex !important;
+  align-items: center !important;
+  padding: 12px 14px !important;
+  border: 1.5px solid #e0e0e0 !important;
+  border-radius: 8px !important;
+  font-size: 15px !important;
+  cursor: pointer !important;
+  background: #fafafa !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+.vCheckboxLabel:active {
+  background: #f0f0f0 !important;
+}
+
+/* ── FORM LAYOUT ─────────────────────────────────── */
+
+.form-row {
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 10px 0 !important;
+  border-bottom: 1px solid #f5f5f5 !important;
+}
+
+.form-row:last-child {
+  border-bottom: none !important;
+}
+
+.form-row > div {
+  width: 100% !important;
+}
+
+label, .required {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #444 !important;
+  margin-bottom: 5px !important;
+  display: block !important;
+  text-transform: none !important;
+}
+
+.help, p.help {
+  font-size: 12px !important;
+  color: #888 !important;
+  margin-top: 4px !important;
+  line-height: 1.4 !important;
+}
+
+/* Fieldset — bo'lim sarlavhasi */
+fieldset.module {
+  border: 1px solid #e8e8e8 !important;
+  border-radius: 10px !important;
+  padding: 0 !important;
+  margin-bottom: 16px !important;
+  overflow: hidden !important;
+}
+
+fieldset.module h2 {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  padding: 12px 16px !important;
+  margin: 0 !important;
+  background: #f5f5f5 !important;
+  border-bottom: 1px solid #e8e8e8 !important;
+  color: #333 !important;
+  letter-spacing: 0.3px !important;
+}
+
+fieldset.module .form-row {
+  padding: 10px 16px !important;
+}
+
+/* ── INLINE FORMLAR ──────────────────────────────── */
+
+.inline-group {
+  border: 1px solid #e8e8e8 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  margin-bottom: 16px !important;
+  background: #fff !important;
+}
+
+.inline-group .tabular h2,
+.inline-group > h2,
+.inline-group .stacked h2 {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  padding: 12px 16px !important;
+  margin: 0 !important;
+  background: #f5f5f5 !important;
+  border-bottom: 1px solid #e8e8e8 !important;
+  color: #333 !important;
+}
+
+/* Inline — tabular ni karta formatga o'tkazish */
+.tabular.inline-related thead {
+  display: none !important;
+}
+
+.tabular.inline-related tbody tr.form-row,
+.tabular.inline-related tbody tr {
+  display: block !important;
+  border-bottom: 1px solid #ececec !important;
+  padding: 14px 16px !important;
+}
+
+.tabular.inline-related tbody tr:last-child {
+  border-bottom: none !important;
+}
+
+.tabular.inline-related tbody td,
+.tabular.inline-related tbody th {
+  display: block !important;
+  width: 100% !important;
+  padding: 5px 0 !important;
+  border: none !important;
+  float: none !important;
+  clear: both !important;
+}
+
+.tabular.inline-related tbody td input,
+.tabular.inline-related tbody td select,
+.tabular.inline-related tbody td textarea {
+  width: 100% !important;
+}
+
+/* O'chirish belgisi — kichik checkbox */
+.tabular.inline-related .delete {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 13px !important;
+  color: #c00 !important;
+  padding-top: 8px !important;
+}
+
+/* Stacked inline */
+.stacked.inline-related .inline-related {
+  border-bottom: 1px solid #ececec !important;
+  padding: 14px 16px !important;
+}
+
+/* Yangi qo'shish tugmasi */
+.add-row {
+  padding: 10px 16px !important;
+  background: #fafafa !important;
+  border-top: 1px solid #e8e8e8 !important;
+}
+
+.add-row a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  padding: 10px 0 !important;
+  color: #333 !important;
+  text-decoration: none !important;
+}
+
+/* ── RO'YXAT (CHANGELIST) ────────────────────────── */
+
+/* Jadval — gorizontal scroll */
+#result_list {
+  display: block !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  border: 1px solid #e8e8e8 !important;
+  border-radius: 10px !important;
+  font-size: 14px !important;
+}
+
+#result_list th {
+  padding: 12px 12px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  background: #f5f5f5 !important;
+  border-bottom: 1px solid #e8e8e8 !important;
+}
+
+#result_list td {
+  padding: 12px 12px !important;
+  font-size: 14px !important;
+  vertical-align: middle !important;
+  border-bottom: 1px solid #f5f5f5 !important;
+  white-space: nowrap !important;
+}
+
+#result_list tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* ── AXTARISH ────────────────────────────────────── */
+
+#toolbar {
+  padding: 10px 0 !important;
+}
+
+#searchbar {
+  height: 46px !important;
+  font-size: 16px !important;
+  border-radius: 8px !important;
+  border: 1.5px solid #d0d0d0 !important;
+  padding: 0 14px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  -webkit-appearance: none;
+}
+
+#search-form {
+  display: flex !important;
+  gap: 8px !important;
+}
+
+#search-form input[type="submit"] {
+  height: 46px !important;
+  padding: 0 16px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+/* ── HARAKATLAR ──────────────────────────────────── */
+
+.actions {
+  display: flex !important;
+  gap: 8px !important;
+  padding: 10px 0 !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+}
+
+select[name="action"] {
+  height: 46px !important;
+  flex: 1 !important;
+  min-width: 160px !important;
+  border-radius: 8px !important;
+  font-size: 15px !important;
+  border: 1.5px solid #d0d0d0 !important;
+}
+
+.actions input[type="submit"] {
+  height: 46px !important;
+  padding: 0 16px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+/* ── FILTER ──────────────────────────────────────── */
+
+#changelist-filter {
+  border: 1px solid #e8e8e8 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  margin-top: 12px !important;
+}
+
+#changelist-filter h2 {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  padding: 10px 14px !important;
+  background: #f5f5f5 !important;
+  border-bottom: 1px solid #e8e8e8 !important;
+  margin: 0 !important;
+  color: #333 !important;
+}
+
+#changelist-filter h3 {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  color: #777 !important;
+  padding: 10px 14px 4px !important;
+  margin: 0 !important;
+  letter-spacing: 0.5px !important;
+}
+
+#changelist-filter li a {
+  display: flex !important;
+  align-items: center !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  min-height: 44px !important;
+  color: #333 !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid #f5f5f5 !important;
+}
+
+#changelist-filter li.selected a {
+  font-weight: 700 !important;
+  background: #f0f0f0 !important;
+}
+
+/* ── NAVIGATSIYA ─────────────────────────────────── */
+
+.nav-sidebar .nav-link {
+  padding: 11px 16px !important;
+  font-size: 14px !important;
+  min-height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.nav-sidebar .nav-header {
+  font-size: 11px !important;
+  padding: 10px 16px 4px !important;
+  letter-spacing: 0.8px !important;
+}
+
+/* ── XABARLAR ────────────────────────────────────── */
+
+.messagelist li {
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  font-size: 15px !important;
+  margin-bottom: 8px !important;
+  line-height: 1.4 !important;
+}
+
+/* ── SELECT2 (autocomplete) ──────────────────────── */
+
+.select2-container--default .select2-selection--single {
+  height: 50px !important;
+  border: 1.5px solid #d0d0d0 !important;
+  border-radius: 8px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 50px !important;
+  padding: 0 14px !important;
+  font-size: 16px !important;
+  color: #222 !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 50px !important;
+  right: 10px !important;
+}
+
+.select2-dropdown {
+  border: 1.5px solid #d0d0d0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12) !important;
+}
+
+.select2-results__option {
+  padding: 12px 14px !important;
+  font-size: 15px !important;
+  min-height: 46px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.select2-search--dropdown .select2-search__field {
+  height: 46px !important;
+  font-size: 16px !important;
+  padding: 0 12px !important;
+  border: 1px solid #d0d0d0 !important;
+  border-radius: 6px !important;
+  margin: 8px !important;
+  width: calc(100% - 16px) !important;
+  box-sizing: border-box !important;
+}
+
+/* ── SANA/VAQT WIDGET ────────────────────────────── */
+
+.datetimeshortcuts {
+  margin-top: 6px !important;
+}
+
+.datetimeshortcuts a {
+  display: inline-block !important;
+  padding: 8px 12px !important;
+  font-size: 13px !important;
+  background: #f0f0f0 !important;
+  border-radius: 6px !important;
+  color: #333 !important;
+  margin-right: 6px !important;
+  min-height: 36px !important;
+  line-height: 20px !important;
+}
+
+/* ── PAGINATION ──────────────────────────────────── */
+
+.paginator {
+  padding: 12px 0 !important;
+  font-size: 14px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.paginator a, .paginator span.this-page {
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  border: 1px solid #e0e0e0 !important;
+  min-width: 38px !important;
+  min-height: 38px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.paginator span.this-page {
+  background: #333 !important;
+  color: #fff !important;
+  border-color: #333 !important;
+  font-weight: 700 !important;
+}
+
+/* ── BREADCRUMB ──────────────────────────────────── */
+
+.breadcrumbs {
+  font-size: 13px !important;
+  padding: 10px 16px !important;
+}
+
+/* ── TELEFON EKRANI ──────────────────────────────── */
+
+@media (max-width: 800px) {
+
+  /* Asosiy kontent joyi */
+  #content {
+    padding: 12px !important;
+    padding-bottom: 80px !important;
+  }
+
+  /* Inputlar to'liq kenglikda */
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  input[type="time"],
+  select,
+  textarea {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Form qatorlari — ustun */
+  .form-row .field-box,
+  .form-row > div {
+    width: 100% !important;
+    float: none !important;
+    display: block !important;
+  }
+
+  /* Inline jadval karta ko'rinishida */
+  .tabular.inline-related table,
+  .tabular.inline-related tbody,
+  .tabular.inline-related tr,
+  .tabular.inline-related td,
+  .tabular.inline-related th {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .tabular.inline-related thead {
+    display: none !important;
+  }
+
+  .tabular.inline-related tbody tr.form-row {
+    background: #fff !important;
+    border: 1px solid #e8e8e8 !important;
+    border-radius: 10px !important;
+    margin: 0 0 12px !important;
+    padding: 12px !important;
+  }
+
+  .tabular.inline-related tbody td {
+    border: none !important;
+    padding: 6px 0 !important;
+  }
+
+  /* Hafta kunlari 2 ustun */
+  ul.vCheckboxFieldBullet {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Actions bir qatorda */
+  .actions {
+    align-items: stretch !important;
+  }
+
+  /* Header */
+  .main-header .navbar-brand-text {
+    font-size: 16px !important;
+  }
+
+  /* Changelist filter */
+  #changelist-filter {
+    width: 100% !important;
+  }
+}
