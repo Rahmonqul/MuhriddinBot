@@ -2,6 +2,26 @@ from django.db import models
 from django.utils import timezone
 
 
+class BotAdmin(models.Model):
+    telegram_id = models.BigIntegerField(unique=True, verbose_name="Telegram ID")
+    full_name = models.CharField(max_length=200, verbose_name="To'liq ism")
+    is_active = models.BooleanField(default=True, verbose_name="Faol")
+
+    class Meta:
+        verbose_name = "Bot Admin"
+        verbose_name_plural = "Bot Adminlar"
+
+    def __str__(self):
+        return f"{self.full_name} ({self.telegram_id})"
+
+    @classmethod
+    def is_admin(cls, telegram_id: int) -> bool:
+        from django.conf import settings
+        if telegram_id in getattr(settings, 'ADMIN_TELEGRAM_IDS', []):
+            return True
+        return cls.objects.filter(telegram_id=telegram_id, is_active=True).exists()
+
+
 class Teacher(models.Model):
     telegram_id = models.BigIntegerField(
         unique=True, null=True, blank=True, verbose_name="Telegram ID"

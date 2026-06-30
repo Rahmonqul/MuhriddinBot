@@ -7,7 +7,7 @@ from django.db.models import Count, Q, Sum
 from datetime import timedelta
 
 from .models import (
-    Teacher, Group, Student, Schedule, Lesson,
+    BotAdmin, Teacher, Group, Student, Schedule, Lesson,
     Attendance, Payment, Notification,
     ControlTest, TestResult, Certificate,
     STATUS_CONFIG, get_student_status,
@@ -117,6 +117,16 @@ class TestResultInline(admin.StackedInline):
 
     def get_queryset(self, request):
         return super().get_queryset(request).select_related('student').order_by('rank')
+
+
+# ─── BotAdmin ─────────────────────────────────────────────────────────────────
+
+@admin.register(BotAdmin)
+class BotAdminAdmin(admin.ModelAdmin):
+    list_display  = ['full_name', 'telegram_id', 'is_active']
+    list_editable = ['is_active']
+    search_fields = ['full_name', 'telegram_id']
+    list_per_page = 20
 
 
 # ─── Teacher ──────────────────────────────────────────────────────────────────

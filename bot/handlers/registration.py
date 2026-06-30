@@ -39,8 +39,8 @@ class ArizaState(StatesGroup):
 # ─── Helpers ──────────────────────────────────────────────────────────────────
 
 def _is_admin(telegram_id: int) -> bool:
-    from django.conf import settings
-    return telegram_id in settings.ADMIN_TELEGRAM_IDS
+    from academy.models import BotAdmin
+    return BotAdmin.is_admin(telegram_id)
 
 
 async def _notify_admins(bot, text: str, reply_markup=None):
