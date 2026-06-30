@@ -11,9 +11,9 @@ logger = logging.getLogger(__name__)
 common_router = Router()
 
 
-def _is_admin(telegram_id: int) -> bool:
+async def _is_admin(telegram_id: int) -> bool:
     from academy.models import BotAdmin
-    return BotAdmin.is_admin(telegram_id)
+    return await sync_to_async(BotAdmin.is_admin)(telegram_id)
 
 
 # ─── Test xabar yuborish ─────────────────────────────────────────────────────
@@ -21,7 +21,7 @@ def _is_admin(telegram_id: int) -> bool:
 @common_router.message(Command('test_notify'))
 async def test_notify(message: Message):
     """Admin uchun: /test_notify — xabarnoma ishlayotganini tekshirish"""
-    if not _is_admin(message.from_user.id):
+    if not await _is_admin(message.from_user.id):
         await message.answer("Bu buyruq faqat admin uchun.")
         return
     try:
@@ -43,7 +43,7 @@ async def test_notify(message: Message):
 @common_router.message(F.text == "👥 O'quvchilar holati")
 async def admin_students_status(message: Message):
     """O'quvchilar soni (guruh bo'yicha) + holat (rang) — bitta xabar."""
-    if not _is_admin(message.from_user.id):
+    if not await _is_admin(message.from_user.id):
         return
 
     from academy.models import Student, Group, get_student_status
@@ -121,7 +121,7 @@ async def admin_students_status(message: Message):
 @common_router.message(F.text == "📊 Guruhlar & Statistika")
 async def admin_groups_stats(message: Message):
     """Guruhlar ro'yxati + umumiy statistika — bitta xabar."""
-    if not _is_admin(message.from_user.id):
+    if not await _is_admin(message.from_user.id):
         return
 
     from academy.models import Group, Student, Payment
@@ -467,7 +467,7 @@ MONTHS_UZ = ['', 'Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun',
 
 @common_router.message(F.text == "💰 Barcha to'lovlar")
 async def admin_all_payments(message: Message):
-    if not _is_admin(message.from_user.id):
+    if not await _is_admin(message.from_user.id):
         return
     await _send_payment_report(message, months_back=0)
 
@@ -572,7 +572,7 @@ async def _send_payment_report(message, months_back: int = 0):
 
 @common_router.callback_query(F.data.startswith("pay_report_"))
 async def cb_payment_report(callback: CallbackQuery):
-    if not _is_admin(callback.from_user.id):
+    if not await _is_admin(callback.from_user.id):
         await callback.answer()
         return
     months_back = int(callback.data.split("_")[-1])
@@ -712,7 +712,7 @@ async def _generate_group_excel(group_id: int) -> bytes:
 
 @common_router.callback_query(F.data.startswith("grp_excel_"))
 async def cb_group_excel(callback: CallbackQuery):
-    if not _is_admin(callback.from_user.id):
+    if not await _is_admin(callback.from_user.id):
         await callback.answer()
         return
 
@@ -748,7 +748,7 @@ async def cb_group_excel(callback: CallbackQuery):
 
 @common_router.message(F.text == "🎨 O'quvchilar holati")
 async def admin_student_statuses(message: Message):
-    if not _is_admin(message.from_user.id):
+    if not await _is_admin(message.from_user.id):
         return
 
     from academy.models import Student, get_student_status

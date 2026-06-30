@@ -38,9 +38,9 @@ class ArizaState(StatesGroup):
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
 
-def _is_admin(telegram_id: int) -> bool:
+async def _is_admin(telegram_id: int) -> bool:
     from academy.models import BotAdmin
-    return BotAdmin.is_admin(telegram_id)
+    return await sync_to_async(BotAdmin.is_admin)(telegram_id)
 
 
 async def _notify_admins(bot, text: str, reply_markup=None):
@@ -75,7 +75,7 @@ async def cmd_start(message: Message, state: FSMContext):
     tg_id = message.from_user.id
 
     # Admin
-    if _is_admin(tg_id):
+    if await _is_admin(tg_id):
         await message.answer(
             "Assalomu alaykum, *Admin*! 👑\n\n"
             "Boshqaruv paneliga xush kelibsiz!",
@@ -463,7 +463,7 @@ async def ariza_group(message: Message, state: FSMContext):
 
 @register_router.callback_query(F.data.startswith('reg_approve_'))
 async def admin_approve(callback: CallbackQuery):
-    if not _is_admin(callback.from_user.id):
+    if not await _is_admin(callback.from_user.id):
         await callback.answer("Sizda ruxsat yo'q.", show_alert=True)
         return
 
@@ -502,7 +502,7 @@ async def admin_approve(callback: CallbackQuery):
 
 @register_router.callback_query(F.data.startswith('reg_reject_'))
 async def admin_reject(callback: CallbackQuery):
-    if not _is_admin(callback.from_user.id):
+    if not await _is_admin(callback.from_user.id):
         await callback.answer("Sizda ruxsat yo'q.", show_alert=True)
         return
 
@@ -533,7 +533,7 @@ async def admin_reject(callback: CallbackQuery):
 
 @register_router.callback_query(F.data.startswith('reg_group_'))
 async def admin_assign_group(callback: CallbackQuery):
-    if not _is_admin(callback.from_user.id):
+    if not await _is_admin(callback.from_user.id):
         await callback.answer("Sizda ruxsat yo'q.", show_alert=True)
         return
 
