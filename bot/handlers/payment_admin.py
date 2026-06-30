@@ -30,16 +30,16 @@ class MarkPayState(StatesGroup):
     entering_amount = State()   # data key: payment_id
 
 
-def _is_admin(telegram_id: int) -> bool:
-    from django.conf import settings
-    return telegram_id in settings.ADMIN_TELEGRAM_IDS
+async def _is_admin(telegram_id: int) -> bool:
+    from academy.models import BotAdmin
+    return await sync_to_async(BotAdmin.is_admin)(telegram_id)
 
 
 # ─── Entry point ─────────────────────────────────────────────────────────────
 
 @payment_admin_router.message(F.text == "💵 To'lov qabul")
 async def payment_admin_start(message: Message, state: FSMContext):
-    if not _is_admin(message.from_user.id):
+    if not await _is_admin(message.from_user.id):
         return
     await state.clear()
     await _show_groups(message)
@@ -89,7 +89,7 @@ async def _show_groups(message: Message):
 
 @payment_admin_router.callback_query(F.data.startswith("apm_g_"))
 async def cb_group_selected(callback: CallbackQuery):
-    if not _is_admin(callback.from_user.id):
+    if not await _is_admin(callback.from_user.id):
         await callback.answer()
         return
 
@@ -142,7 +142,7 @@ async def cb_group_selected(callback: CallbackQuery):
 
 @payment_admin_router.callback_query(F.data.startswith("apm_s_"))
 async def cb_student_selected(callback: CallbackQuery):
-    if not _is_admin(callback.from_user.id):
+    if not await _is_admin(callback.from_user.id):
         await callback.answer()
         return
 
@@ -194,7 +194,7 @@ async def cb_student_selected(callback: CallbackQuery):
 
 @payment_admin_router.callback_query(F.data.startswith("apm_p_"))
 async def cb_payment_selected(callback: CallbackQuery):
-    if not _is_admin(callback.from_user.id):
+    if not await _is_admin(callback.from_user.id):
         await callback.answer()
         return
 
@@ -255,7 +255,7 @@ async def cb_payment_selected(callback: CallbackQuery):
 
 @payment_admin_router.callback_query(F.data.startswith("apm_full_"))
 async def cb_mark_full_paid(callback: CallbackQuery, state: FSMContext):
-    if not _is_admin(callback.from_user.id):
+    if not await _is_admin(callback.from_user.id):
         await callback.answer()
         return
 
@@ -306,7 +306,7 @@ async def cb_mark_full_paid(callback: CallbackQuery, state: FSMContext):
 
 @payment_admin_router.callback_query(F.data.startswith("apm_part_"))
 async def cb_mark_partial_start(callback: CallbackQuery, state: FSMContext):
-    if not _is_admin(callback.from_user.id):
+    if not await _is_admin(callback.from_user.id):
         await callback.answer()
         return
 
@@ -339,7 +339,7 @@ async def cb_mark_partial_start(callback: CallbackQuery, state: FSMContext):
 
 @payment_admin_router.message(MarkPayState.entering_amount)
 async def cb_partial_amount_entered(message: Message, state: FSMContext):
-    if not _is_admin(message.from_user.id):
+    if not await _is_admin(message.from_user.id):
         return
 
     text = message.text.replace(' ', '').replace(',', '').replace('.', '')
