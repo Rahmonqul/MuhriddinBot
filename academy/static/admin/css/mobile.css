@@ -548,16 +548,20 @@ select[name="action"] {
 /* ── QO'SHISH TUGMASI ────────────────────────────── */
 
 .object-tools {
+  position: static !important;
+  float: none !important;
   display: flex !important;
   gap: 8px !important;
   flex-wrap: wrap !important;
-  margin: 0 0 12px !important;
+  margin: 12px 0 !important;
   padding: 0 !important;
   list-style: none !important;
+  clear: both !important;
 }
 
 .object-tools li {
   display: block !important;
+  float: none !important;
 }
 
 .object-tools a {
@@ -569,6 +573,22 @@ select[name="action"] {
   font-weight: 600 !important;
   min-height: 42px !important;
   white-space: nowrap !important;
+  position: static !important;
+}
+
+/* Fixed navbar ostida content ko'rinsin */
+.wrapper .content-wrapper,
+#content-main {
+  padding-top: 10px !important;
+}
+
+.content-header {
+  min-height: auto !important;
+}
+
+/* Changelist sarlavha va tugma birgalikda */
+#changelist .object-tools {
+  margin-bottom: 16px !important;
 }
 
 /* ── BREADCRUMB ──────────────────────────────────── */
