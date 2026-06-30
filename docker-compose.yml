@@ -28,7 +28,16 @@ services:
       - "8000:8000"
     command: >
       sh -c "python manage.py migrate &&
-             python manage.py runbot"
+             gunicorn bot_config.wsgi:application --bind 0.0.0.0:8000 --workers 2"
+
+  bot:
+    build: .
+    restart: always
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+    command: python manage.py runbot
 
 volumes:
   postgres_data:
