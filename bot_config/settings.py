@@ -106,13 +106,10 @@ JAZZMIN_SETTINGS = {
     "site_brand": "📐 MathAcademy",
     "welcome_sign": "MathAcademy boshqaruv paneliga xush kelibsiz!",
     "copyright": "MathAcademy © 2025",
-    "search_model": ["academy.Student", "academy.Payment", "academy.ControlTest"],
+    "search_model": ["academy.Student"],
 
     "topmenu_links": [
         {"name": "Bosh sahifa", "url": "admin:index", "permissions": ["auth.view_user"]},
-        {"model": "academy.Student"},
-        {"model": "academy.Payment"},
-        {"model": "academy.ControlTest"},
     ],
 
     "usermenu_links": [

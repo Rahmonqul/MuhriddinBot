@@ -2,6 +2,45 @@
    MathAcademy Admin — Telefon uchun qulay
    ===================================================== */
 
+/* ── NAVBAR ──────────────────────────────────────── */
+
+/* Navbar qidiruv maydoni kichik bo'lsin */
+.navbar-search {
+  max-width: 200px !important;
+}
+
+.navbar-search .form-control {
+  width: 160px !important;
+  font-size: 13px !important;
+}
+
+/* Qo'shish tugmasi navbar bilan bir qatorda chiroyli */
+.content-header .object-tools,
+.change-list .object-tools {
+  margin: 8px 0 16px !important;
+}
+
+/* ── DESKTOP ─────────────────────────────────────── */
+
+@media (min-width: 801px) {
+  .object-tools {
+    display: flex !important;
+    justify-content: flex-start !important;
+    margin: 8px 0 16px 0 !important;
+  }
+
+  .object-tools a {
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+  }
+
+  /* Navbar search kichikroq */
+  .navbar .form-inline .form-control {
+    width: 140px !important;
+    font-size: 13px !important;
+  }
+}
+
 /* iOS da input bosilganda sahifa zum qilmasin */
 input, select, textarea, button {
   font-size: 16px !important;
