@@ -112,9 +112,7 @@ JAZZMIN_SETTINGS = {
         {"name": "Bosh sahifa", "url": "admin:index", "permissions": ["auth.view_user"]},
     ],
 
-    "usermenu_links": [
-        {"name": "Profil", "url": "admin:auth_user_change", "icon": "fas fa-user"},
-    ],
+    "usermenu_links": [],
 
     "show_sidebar": True,
     "navigation_expanded": True,
