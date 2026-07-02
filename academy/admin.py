@@ -205,6 +205,11 @@ class StudentAdmin(admin.ModelAdmin):
     inlines       = [PaymentInline]
     actions       = ['send_payment_reminder', 'deactivate_students']
 
+    def get_queryset(self, request):
+        from django.db.models import Prefetch
+        qs = super().get_queryset(request)
+        return qs.prefetch_related('attendances', 'payments', 'test_results__test')
+
     fieldsets = (
         ("Shaxsiy", {
             'fields': ('full_name', 'phone', 'birth_date', 'group', 'is_active')
